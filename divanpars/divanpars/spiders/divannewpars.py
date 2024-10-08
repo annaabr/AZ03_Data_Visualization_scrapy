@@ -21,22 +21,3 @@ class DivannewparsSpider(scrapy.Spider):
             yield {
                 'price': divan.css('div.pY3d2 span::text').get(),
             }
-'''
-============================================================
-    custom_settings = {
-        'FEED_FORMAT': 'csv',
-        'FEED_URI': 'price.csv',
-        'FEED_EXPORT_FIELDS': ['price'],
-    }
-
-    def parse(self, response):
-        divans = response.css('div._Ud0k')
-        if not divans:
-            self.logger.warning("Не удалось найти диваны. Проверьте селекторы.")
-        for divan in divans:
-            price = divan.css('div.pY3d2 span::text').get()
-            if price:
-                yield {'price': price}
-            else:
-                self.logger.warning("Цена не найдена для одного из диванов.")
-'''
